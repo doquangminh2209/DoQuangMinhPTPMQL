@@ -1,4 +1,5 @@
 @model IEnumerable<FirstWebMVC.Models.Entities.Student>
+@model IEnumerable<FirstWebMVC.Models.ViewModels.StudentFacultyViewModel>
 
 @{
     ViewData["Title"] = "Danh sách Sinh viên";
@@ -20,11 +21,11 @@
     <thead class="table-primary">
         <tr>
             <th>Mã Sinh Viên</th>
-            <th>Mã Sinh Số Viên</th>
             <th>Họ và Tên</th>
             <th>Thao tác</th>
             <th>Tuổi</th>
             <th>Email</th>
+            <th>Tên Khoa</th>
             <th class="text-center">Thao tác</th>
         </tr>
     </thead>
@@ -42,6 +43,7 @@
                 <td class="align-middle">@item.FullName</td>
                 <td class="align-middle">@item.Age</td>
                 <td class="align-middle">@item.Email</td>
+                <td class="align-middle">@item.FacultyName</td>
                 <td class="text-center align-middle">
                     <a asp-action="Edit" asp-route-id="@item.StudentCode" class="btn btn-sm btn-outline-primary me-1">Sửa</a>
                     <a asp-action="Delete" asp-route-id="@item.StudentCode" class="btn btn-sm btn-outline-danger">Xóa</a>

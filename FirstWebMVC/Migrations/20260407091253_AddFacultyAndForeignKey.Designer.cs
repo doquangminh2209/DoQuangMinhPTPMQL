@@ -2,6 +2,7 @@
 using FirstWebMVC.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -9,12 +10,15 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstWebMVC.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260407091253_AddFacultyAndForeignKey")]
+    partial class AddFacultyAndForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.3");
+
             modelBuilder.Entity("FirstWebMVC.Models.Entities.Faculty", b =>
                 {
                     b.Property<string>("FacultyID")
@@ -34,7 +38,7 @@ namespace FirstWebMVC.Migrations
                 {
                     b.Property<string>("StudentCode")
                         .HasColumnType("TEXT");
-                        
+
                     b.Property<int>("Age")
                         .HasColumnType("INTEGER");
 
@@ -45,8 +49,6 @@ namespace FirstWebMVC.Migrations
                     b.Property<string>("FacultyID")
                         .HasColumnType("TEXT");
 
-
-
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -54,11 +56,12 @@ namespace FirstWebMVC.Migrations
 
                     b.HasKey("StudentCode");
 
-                     b.HasIndex("FacultyID");
+                    b.HasIndex("FacultyID");
 
                     b.ToTable("Students");
                 });
-                modelBuilder.Entity("FirstWebMVC.Models.Entities.Student", b =>
+
+            modelBuilder.Entity("FirstWebMVC.Models.Entities.Student", b =>
                 {
                     b.HasOne("FirstWebMVC.Models.Entities.Faculty", null)
                         .WithMany("Students")
